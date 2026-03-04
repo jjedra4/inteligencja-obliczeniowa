@@ -1,0 +1,90 @@
+[
+  {
+    "ai_1": 24,
+    "ai_2": 30,
+    "draw": 6,
+    "ai_1_avg_time": 0.0003975862399766258,
+    "ai_2_avg_time": 0.0024981397070019625,
+    "n_games": 60,
+    "deterministic": true,
+    "ai_1_name": "Negamax_AB_d4",
+    "ai_2_name": "Negamax_AB_d6"
+  },
+  {
+    "ai_1": 18,
+    "ai_2": 34,
+    "draw": 8,
+    "ai_1_avg_time": 0.003743368108175639,
+    "ai_2_avg_time": 0.08518109503456138,
+    "n_games": 60,
+    "deterministic": true,
+    "ai_1_name": "Negamax_noAB_d4",
+    "ai_2_name": "Negamax_noAB_d6"
+  },
+  {
+    "ai_1": 31,
+    "ai_2": 22,
+    "draw": 7,
+    "ai_1_avg_time": 0.0003910803703613851,
+    "ai_2_avg_time": 0.004049299964951777,
+    "n_games": 60,
+    "deterministic": true,
+    "ai_1_name": "Negamax_AB_d4",
+    "ai_2_name": "Negamax_noAB_d4"
+  },
+  {
+    "ai_1": 33,
+    "ai_2": 20,
+    "draw": 7,
+    "ai_1_avg_time": 0.0025416348984561347,
+    "ai_2_avg_time": 0.0997100265823272,
+    "n_games": 60,
+    "deterministic": true,
+    "ai_1_name": "Negamax_AB_d6",
+    "ai_2_name": "Negamax_noAB_d6"
+  },
+  {
+    "ai_1": 25,
+    "ai_2": 30,
+    "draw": 5,
+    "ai_1_avg_time": 0.00043008867254916655,
+    "ai_2_avg_time": 0.0028497702895932025,
+    "n_games": 60,
+    "deterministic": false,
+    "ai_1_name": "Negamax_AB_d4",
+    "ai_2_name": "Negamax_AB_d6"
+  },
+  {
+    "ai_1": 16,
+    "ai_2": 36,
+    "draw": 8,
+    "ai_1_avg_time": 0.004100426575095053,
+    "ai_2_avg_time": 0.09614140445096347,
+    "n_games": 60,
+    "deterministic": false,
+    "ai_1_name": "Negamax_noAB_d4",
+    "ai_2_name": "Negamax_noAB_d6"
+  },
+  {
+    "ai_1": 26,
+    "ai_2": 26,
+    "draw": 8,
+    "ai_1_avg_time": 0.0003797044151259544,
+    "ai_2_avg_time": 0.0039957690426602015,
+    "n_games": 60,
+    "deterministic": false,
+    "ai_1_name": "Negamax_AB_d4",
+    "ai_2_name": "Negamax_noAB_d4"
+  },
+  {
+    "ai_1": 29,
+    "ai_2": 27,
+    "draw": 4,
+    "ai_1_avg_time": 0.002588769323886075,
+    "ai_2_avg_time": 0.0974007494767454,
+    "n_games": 60,
+    "deterministic": false,
+    "ai_1_name": "Negamax_AB_d6",
+    "ai_2_name": "Negamax_noAB_d6"
+  }
+]
