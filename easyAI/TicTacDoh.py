@@ -16,6 +16,7 @@ class TicTacDoh(TwoPlayerGame):
         self.players = players
         self.board = [0 for i in range(9)]
         self.current_player = 1  # player 1 starts.
+        self.deterministic = True
 
     def possible_moves(self):
         return [i + 1 for i, e in enumerate(self.board) if e == 0]
@@ -38,8 +39,8 @@ class TicTacDoh(TwoPlayerGame):
         )
 
     def make_move(self, move):
-        if random.random() < 0.2:  # 20% chance of skipping a move
-            return 
+        if random.random() < 0.2 and not self.deterministic:
+            return
         self.board[int(move) - 1] = self.current_player
 
     def unmake_move(self, move):  # optional method (speeds up the AI)
