@@ -1,0 +1,21 @@
+name: gym
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - pandas
+  - matplotlib
+  - jupyterlab
+  - ipykernel
+  - swig
+  - cmake
+  - ffmpeg
+  - pip:
+      - gymnasium[box2d]
+      - stable-baselines3[extra]
+      - torch
+      - torchvision
+      - tensorboard
