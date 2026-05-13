@@ -383,4 +383,130 @@ solve_with_subgoals(blocksworld_domain, bw_problem1_init, p1_subgoals, "Problem 
 solve_with_subgoals(blocksworld_domain, bw_problem2_init, p2_subgoals, "Problem 2", use_heuristic=True)
 solve_with_subgoals(blocksworld_domain, bw_problem3_init, p3_subgoals, "Problem 3", use_heuristic=True)
 
+# ==========================================
+# 8 PUNKTÓW: 3 DODATKOWE PROBLEMY Z PODCELAMI (>=20 AKCJI)
+# ==========================================
+
+blocks_8 = ["a", "b", "c", "d"]
+tables_8 = ["t1", "t2", "t3"]
+surfaces_8 = set(blocks_8) | set(tables_8)
+
+blocksworld8_feature_domains = {
+    "on_a": surfaces_8 - {"a"},
+    "on_b": surfaces_8 - {"b"},
+    "on_c": surfaces_8 - {"c"},
+    "on_d": surfaces_8 - {"d"},
+    "clear_a": boolean,
+    "clear_b": boolean,
+    "clear_c": boolean,
+    "clear_d": boolean,
+    "clear_t1": boolean,
+    "clear_t2": boolean,
+    "clear_t3": boolean,
+}
+
+blocksworld8_actions = []
+
+for b in blocks_8:
+    on_b = f"on_{b}"
+    clear_b = clear_feature(b)
+    for x in tables_8:
+        for y in tables_8:
+            if x == y:
+                continue
+            blocksworld8_actions.append(
+                Strips(
+                    f"move({b},{x},{y})",
+                    preconds={on_b: x, clear_b: True, clear_feature(y): True},
+                    effects={on_b: y, clear_feature(x): True, clear_feature(y): False},
+                )
+            )
+
+for upper in blocks_8:
+    for lower in blocks_8:
+        if upper == lower:
+            continue
+        on_upper = f"on_{upper}"
+        clear_upper = clear_feature(upper)
+        clear_lower = clear_feature(lower)
+        for x in tables_8:
+            blocksworld8_actions.append(
+                Strips(
+                    f"stack({upper},{x},{lower})",
+                    preconds={on_upper: x, clear_upper: True, clear_lower: True},
+                    effects={on_upper: lower, clear_feature(x): True, clear_lower: False},
+                )
+            )
+
+for upper in blocks_8:
+    for lower in blocks_8:
+        if upper == lower:
+            continue
+        on_upper = f"on_{upper}"
+        clear_upper = clear_feature(upper)
+        clear_lower = clear_feature(lower)
+        for y in tables_8:
+            blocksworld8_actions.append(
+                Strips(
+                    f"unstack({upper},{lower},{y})",
+                    preconds={on_upper: lower, clear_upper: True, clear_feature(y): True},
+                    effects={on_upper: y, clear_lower: True, clear_feature(y): False},
+                )
+            )
+
+blocksworld8_domain = STRIPS_domain(blocksworld8_feature_domains, blocksworld8_actions)
+
+bw8_init = {
+    "on_a": "t1",
+    "on_b": "a",
+    "on_c": "b",
+    "on_d": "c",
+    "clear_a": False,
+    "clear_b": False,
+    "clear_c": False,
+    "clear_d": True,
+    "clear_t1": False,
+    "clear_t2": True,
+    "clear_t3": True,
+}
+
+p8_1_subgoals = [
+    {"on_d": "t2"},
+    {"on_c": "d"},
+    {"on_b": "t1"},
+    {"on_a": "b"},
+    {"on_d": "t3"},
+    {"on_c": "t1"},
+    {"on_b": "c"},
+    {"on_a": "d"},
+]
+
+p8_2_subgoals = [
+    {"on_d": "t3"},
+    {"on_c": "t2"},
+    {"on_b": "d"},
+    {"on_a": "t3"},
+    {"on_d": "a"},
+    {"on_c": "b"},
+    {"on_b": "t1"},
+    {"on_a": "c"},
+]
+
+p8_3_subgoals = [
+    {"on_a": "c"},
+    {"on_a": "b"},
+    {"on_a": "d"},
+    {"on_b": "a"},
+    {"on_b": "c"},
+    {"on_c": "t2"},
+    {"on_d": "b"},
+    {"on_a": "b"},
+]
+
+print("\n\n" + "#" * 50 + "\nZADANIA NA 8 PUNKTÓW (DODATKOWE PROBLEMY)\n" + "#" * 50)
+print("Uruchomienie wariantu z podcelami i heurystyką dla 4 klocków.")
+solve_with_subgoals(blocksworld8_domain, bw8_init, p8_1_subgoals, "Problem 8.1", use_heuristic=True)
+solve_with_subgoals(blocksworld8_domain, bw8_init, p8_2_subgoals, "Problem 8.2", use_heuristic=True)
+solve_with_subgoals(blocksworld8_domain, bw8_init, p8_3_subgoals, "Problem 8.3", use_heuristic=True)
+
 print_time_summary()

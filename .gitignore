@@ -1,4 +1,7 @@
-# macOS
+.venv-wlasnesrodowisko/
+models/
+logs/
+best_model/
 .DS_Store
 
 # Python bytecode and caches
